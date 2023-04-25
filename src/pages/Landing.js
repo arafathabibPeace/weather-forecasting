@@ -1,9 +1,7 @@
 import React from "react";
-import Login from "../component/Login";
 
 const Landing = () =>{
-    
-    return <div><Login/></div>
+    return <div>Landing</div>
 }
 
 export default Landing
