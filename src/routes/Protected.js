@@ -5,6 +5,8 @@ const Protected = ({ isSignedIn, children }) => {
     console.log(isSignedIn)
     if (!isSignedIn) {
         return <Navigate to="/" replace />
+    }else{
+        return <Navigate to="/home" replace />
     }
     return children
 }

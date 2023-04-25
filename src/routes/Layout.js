@@ -10,9 +10,8 @@ const Layout = () => {
     const isSignedIn = useContext(Context)
     console.log(isSignedIn)
     return <>
-
         <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path='/' element={<Landing />}></Route>
             <Route path="/home"
                 element={
                     <Protected isSignedIn={isSignedIn}>
