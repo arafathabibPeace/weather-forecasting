@@ -1,23 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import Layout from './routes/Layout';
+import { useState } from "react";
+import { Context } from './routes/Context';
 
 function App() {
+  const [isSignedIn, setLoggedIn] = useState(false)
+  console.log(isSignedIn)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Context.Provider value={isSignedIn}>
+        <h1>{`isSignedIn: ${isSignedIn}`}</h1>
+        <Layout />
+      </Context.Provider>
+
     </div>
   );
 }
