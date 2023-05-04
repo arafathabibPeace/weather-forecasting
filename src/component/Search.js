@@ -7,15 +7,16 @@ import { useNavigate } from 'react-router-dom';
 const Search = () => {
     let dispatch = useDispatch()
     const navigate = useNavigate();
+    const { userDetails } = useSelector((state) => state.userDetails)
     const { cityDetails } = useSelector((state) => state.cityDetails)
     const [searchTerm, setSearchTerm] = useState('');
-    const { userDetails } = useSelector((state) => state.userDetails)
+    const { forecastDetails } = useSelector((state) => state.forecastDetails)
+    
     const [error, setError] = useState('')
     const handleChange = (event) => {
         event.preventDefault();
         setError('')
         setSearchTerm(event.target.value);
-
     };
 
     const submitHandler = (e) => {

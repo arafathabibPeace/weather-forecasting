@@ -20,9 +20,7 @@ const Router = () => {
                     <Protected>
                         <Weather />
                     </Protected>} />
-            <Route path='/api/session/oath/github' element={<Protected>
-                        <Home />
-                    </Protected>}/>
+            <Route path='/api/session/oath/github' element={<Home />} />
         </Routes>
     </>
 }
