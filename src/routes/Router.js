@@ -1,32 +1,32 @@
-import React, { useContext } from "react";
-import { Context } from './Context';
+import React from "react";
 import { Routes, Route } from 'react-router-dom';
 import Landing from "../pages/Landing";
 import Home from "../pages/Home";
 import Weather from "../pages/Weather";
 import Protected from "./Protected";
 
-const Layout = () => {
-    const isSignedIn = useContext(Context)
-    console.log(isSignedIn)
+const Router = () => {
     return <>
 
         <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/home"
                 element={
-                    <Protected isSignedIn={isSignedIn}>
+                    <Protected>
                         <Home />
                     </Protected>} />
             <Route path="/weather"
                 element={
-                    <Protected isSignedIn={isSignedIn}>
+                    <Protected>
                         <Weather />
                     </Protected>} />
+            <Route path='/api/session/oath/github' element={<Protected>
+                        <Home />
+                    </Protected>}/>
         </Routes>
     </>
 }
 
 
 
-export default Layout
+export default Router

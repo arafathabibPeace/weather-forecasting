@@ -1,34 +1,36 @@
 import './App.css';
-import Layout from './routes/Layout';
-import { useEffect, useState } from "react";
-import { Context } from './routes/Context';
+import Router from './routes/Router';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { getCodeParam, getUserDetails, get_access_token } from "../src/redux/action";
 
-function App() {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString)
-  const codeParam = urlParams.get('code')
-  console.log(codeParam);
-
-  const [accessToken, setAccessToken] = useState('')
-  const [isSignedIn, setLoggedIn] = useState(false)
-  console.log(isSignedIn)
-
+const App = () => {
+  const dispatch = useDispatch()
+  const { accessToken } = useSelector((state) => state.accessToken)
 
   useEffect(() => {
-    if(codeParam && accessToken === ''){
-      console.log(urlParams,codeParam)
-
-    }else{
-      
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString)
+    const codeParam = urlParams.get('code')
+  
+    if (codeParam) {
+      dispatch(getCodeParam(codeParam))
+      if (!accessToken) {
+        dispatch(get_access_token(codeParam))
+      }
     }
-  },[])
+  }, [accessToken,dispatch])
+
+  useEffect(()=>{
+
+    if(accessToken){
+      dispatch(getUserDetails(accessToken))
+    }
+  },[accessToken,dispatch])
 
   return (
     <div className="App">
-      <Context.Provider value={isSignedIn}>
-        <Layout />
-      </Context.Provider>
-
+        <Router />
     </div>
   );
 }
