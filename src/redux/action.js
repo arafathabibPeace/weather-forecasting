@@ -35,7 +35,6 @@ export const get_access_token = (code) => {
     return (dispatch) => {
         axios.get('http://localhost:4000/getAccessToken?code=' + code)
             .then((res) => {
-                console.log(res)
                 dispatch(setAccessToken(res?.data?.access_token))
             })
     }
@@ -59,7 +58,6 @@ export const getCityDetails = (city) => {
     return function (dispatch) {
         axios.get('http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=' + process.env.REACT_APP_WEATHER_API_KEY)
             .then((res) => {
-                console.log(res)
                 dispatch(setCityDetails(res))
             })
             .catch((err) => {
